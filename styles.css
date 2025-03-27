@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+  /* Color Variables */
+  --primary-color: #4e7a9e;
+  --secondary-color: #f77f50;
+  --accent-color: #7fd1ae;
+  --light-color: #f9f9f9;
+  --dark-color: #333333;
+  --gray-color: #777777;
+  --light-gray: #eeeeee;
+
+  /* Font Variables */
+  --heading-font: 'Montserrat', sans-serif;
+  --body-font: 'Open Sans', sans-serif;
+}
+
+body {
+  font-family: var(--body-font);
+  margin: 0;
+  padding: 0 0 10px 0;
+  text-align: center;
+  background-color: var(--light-gray);
+}
+
+.banner {
+  width: 100%;
+  height: 360px;
+  background: url('https://placedog.net/1600?id=128') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-color);
+  font-size: 2.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: var(--heading-font);
+}
+
+.banner-content {
+  cursor: pointer;
+}
+
+.paw-icon {
+  color: var(--secondary-color);
+}
+
+.header {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 20px 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: var(--heading-font);
+}
+
+h1 {
+  color: var(--dark-color);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.card {
+  background: var(--light-color);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s ease;
+  padding: 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-selected {
+  transform: scale(1.03);
+  box-shadow: 0 0 6px rgb(247, 127, 80, 0.435);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+  color: var(--secondary-color);
+  font-family: var(--heading-font);
+}
+
+.card p {
+  margin: 0;
+  color: var(--dark-color);
+  font-size: 0.9em;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-transform: uppercase;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #3b6789;
+}
