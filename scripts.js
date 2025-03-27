@@ -1,27 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Select all necessary elements
-    const selectAllBtn = document.querySelector('#btn-select-all');
-    const unselectAllBtn = document.querySelector('#btn-unselect-all');
-    const firstBtn = document.querySelector('#btn-select-first');
-    const lastBtn = document.querySelector('#btn-select-last');
-    const nextBtn = document.querySelector('#btn-select-next');
-    const prevBtn = document.querySelector('#btn-select-previous');
+    const select = document.querySelector('#btn-select-all');
+    const unselect = document.querySelector('#btn-unselect-all');
+    const first = document.querySelector('#btn-select-first');
+    const last = document.querySelector('#btn-select-last');
+    const next = document.querySelector('#btn-select-next');
+    const prev = document.querySelector('#btn-select-previous');
     const cards = document.querySelectorAll('.card');
-    const petButtons = document.querySelectorAll('.btn-full');
+    const pet = document.querySelectorAll('.btn-full');
+    const sitelogo = document.querySelector('.banner-content');
 
-    // Add event listeners
-    selectAllBtn.addEventListener('click', active);
-    unselectAllBtn.addEventListener('click', inactive);
-    firstBtn.addEventListener('click', highlightFirstCard);
-    lastBtn.addEventListener('click', highlightLastCard);
-    nextBtn.addEventListener('click', highlightNextCard);
-    prevBtn.addEventListener('click', highlightPrevCard);
+    select.addEventListener('click', active);
+    unselect.addEventListener('click', inactive);
+    first.addEventListener('click', highlightFirstCard);
+    last.addEventListener('click', highlightLastCard);
+    next.addEventListener('click', highlightNextCard);
+    prev.addEventListener('click', highlightPrevCard);
+    sitelogo.addEventListener('click',logo);
 
-    petButtons.forEach(button => {
+    pet.forEach(button => {
         button.addEventListener('click', change);
     });
 
-    // Helper functions
     function getCurrentActiveIndex() {
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].classList.contains('active')) {
@@ -92,4 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    function logo() {
+        sitelogo.classList.add("animate__animated", "animate__pulse");
+        setTimeout(() => {
+            sitelogo.classList.remove("animate__animated", "animate__pulse");
+        }, 1000); 
+    }
 });
+
