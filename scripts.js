@@ -1,24 +1,44 @@
-const button1 = document.querySelector('#button1');
-const button2 = document.querySelector('#button2');
-const button3 = document.querySelector('#button3');
-const button4 = document.querySelector('#button4');
-const button5 = document.querySelector('#button5');
-const button6 = document.querySelector('#button6');
+const petButtons = document.querySelectorAll('.btn-full');
 const select = document.querySelector('#btn-select-all');
 const unselect = document.querySelector('#btn-unselect-all');
+const first = document.querySelector('#btn-select-first');
+const last = document.querySelector('#btn-select-last');
+const next = document.querySelector('#btn-select-next');
+const back = document.querySelector('#btn-select-previous');
+const cards = document.querySelectorAll('.card');
 
-button1.onclick = change;
-button2.onclick = change;
-button3.onclick = change;
-button4.onclick = change;
-button5.onclick = change;
-button6.onclick = change;
+petButtons.forEach(button => {
+    button.onclick = change;
+});
+
 select.onclick = active;
 unselect.onclick = inactive;
+first.onclick = highlightFirstCard;
+last.onclick = highlightLastCard;
+next.onclick = highlightNextCard;
+back.onclick = highlightPrevCard;
+
+function highlightFirstCard() {
+    cards.forEach(card => {
+        card.classList.remove('active');
+        card.classList.remove('card-selected');
+    });
+    cards[0].classList.add('active');
+    cards[0].classList.add('card-selected');
+}
+
+function highlightLastCard() {
+    cards.forEach(card => {
+        card.classList.remove('active');
+        card.classList.remove('card-selected');
+    });
+    const lastCard = cards[cards.length - 1];
+    lastCard.classList.add('active');
+    lastCard.classList.add('card-selected');
+}
 
 function active() {
-    const buttons = [button1, button2, button3, button4, button5, button6];
-    buttons.forEach(button => {
+    petButtons.forEach(button => {
         const icon = button.querySelector('i');
         icon.classList.remove('fa-regular');
         icon.classList.add('fa-solid');
@@ -26,8 +46,7 @@ function active() {
 }
 
 function inactive() {
-    const buttons = [button1, button2, button3, button4, button5, button6];
-    buttons.forEach(button => {
+    petButtons.forEach(button => {
         const icon = button.querySelector('i');
         icon.classList.remove('fa-solid');
         icon.classList.add('fa-regular');
