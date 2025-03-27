@@ -1,65 +1,87 @@
-const petButtons = document.querySelectorAll('.btn-full');
-const select = document.querySelector('#btn-select-all');
-const unselect = document.querySelector('#btn-unselect-all');
 const first = document.querySelector('#btn-select-first');
 const last = document.querySelector('#btn-select-last');
 const next = document.querySelector('#btn-select-next');
 const back = document.querySelector('#btn-select-previous');
 const cards = document.querySelectorAll('.card');
 
-petButtons.forEach(button => {
-    button.onclick = change;
-});
-
-select.onclick = active;
-unselect.onclick = inactive;
+document.querySelector('#btn-select-all').onclick = active;
+document.querySelector('#btn-unselect-all').onclick = inactive;
 first.onclick = highlightFirstCard;
 last.onclick = highlightLastCard;
 next.onclick = highlightNextCard;
 back.onclick = highlightPrevCard;
 
-function highlightFirstCard() {
+document.querySelectorAll('.btn-full').forEach(button => {
+    button.onclick = change;
+});
+
+function getCurrentActiveIndex() {
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].classList.contains('active')) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+function highlightCard(index) {
     cards.forEach(card => {
         card.classList.remove('active');
         card.classList.remove('card-selected');
     });
-    cards[0].classList.add('active');
-    cards[0].classList.add('card-selected');
+    cards[index].classList.add('active');
+    cards[index].classList.add('card-selected');
+}
+
+function highlightFirstCard() {
+    highlightCard(0);
 }
 
 function highlightLastCard() {
-    cards.forEach(card => {
-        card.classList.remove('active');
-        card.classList.remove('card-selected');
-    });
-    const lastCard = cards[cards.length - 1];
-    lastCard.classList.add('active');
-    lastCard.classList.add('card-selected');
+    highlightCard(cards.length - 1);
+}
+
+function highlightNextCard() {
+    const currentIndex = getCurrentActiveIndex();
+    const nextIndex = (currentIndex + 1) % cards.length;
+    highlightCard(nextIndex);
+}
+
+function highlightPrevCard() {
+    const currentIndex = getCurrentActiveIndex();
+    const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    highlightCard(prevIndex);
 }
 
 function active() {
-    petButtons.forEach(button => {
+    document.querySelectorAll('.btn-full').forEach(button => {
         const icon = button.querySelector('i');
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
+        if (icon) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+        }
     });
 }
 
 function inactive() {
-    petButtons.forEach(button => {
+    document.querySelectorAll('.btn-full').forEach(button => {
         const icon = button.querySelector('i');
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
+        if (icon) {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+        }
     });
 }
 
 function change(event) {
     const icon = event.currentTarget.querySelector('i');
-    if (icon.classList.contains('fa-regular')) {
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
-    } else {
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
+    if (icon) {
+        if (icon.classList.contains('fa-regular')) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+        }
     }
 }
